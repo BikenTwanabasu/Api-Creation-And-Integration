@@ -39,10 +39,10 @@ namespace ApiToConsume.Controllers
             }
         }
         [HttpGet("ViewById/{Id}")]
-        public IActionResult ViewById(DemoModel model)
+        public IActionResult ViewById(int Id)
         {
-            var a = _demoServices.getById(model);
-            if (model.Id == null)
+            var a = _demoServices.getById(Id);
+            if (Id == null)
             {
                 return BadRequest("Id cannot be 0");
             }
@@ -57,9 +57,9 @@ namespace ApiToConsume.Controllers
             }
         }
         [HttpPut]
-        public IActionResult Edit(DemoModel model)
+        public IActionResult Edit(int Id)
         {
-            var a =_demoServices.edit(model);
+            var a =_demoServices.edit(Id);
             if (!a)
             {
                 return BadRequest("Invalid request by the user");

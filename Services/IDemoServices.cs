@@ -6,8 +6,8 @@ namespace ApiToConsume.Services
     {
         public bool createData(DemoModel model);
         public List<DemoModel> get();
-        public DemoModel getById(DemoModel demo);
-        public bool edit(DemoModel demo);
+        public DemoModel getById(int Id);
+        public bool edit(int Id);
         public bool delete(DemoModel demo);
     }
 }

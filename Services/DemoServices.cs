@@ -67,7 +67,7 @@ namespace ApiToConsume.Services
                
 
         }
-        public DemoModel getById(DemoModel demo)
+        public DemoModel getById(int Id)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString()))
             {
@@ -76,11 +76,13 @@ namespace ApiToConsume.Services
                 SqlCommand cmd = new SqlCommand("spdemoProc", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@flag", "ViewById");
-                cmd.Parameters.AddWithValue("@Id", demo.Id);
+                cmd.Parameters.AddWithValue("@Id", Id);
                 SqlDataReader rdr = cmd.ExecuteReader();
+                DemoModel demo = new DemoModel();
 
                 while (rdr.Read())
                 {
+                    
                     demo.Id = rdr["Id"].ToString();
                     demo.Name = rdr["Name"].ToString();
                     demo.Address = rdr["Address"].ToString();
@@ -94,11 +96,11 @@ namespace ApiToConsume.Services
 
 
         }
-        public bool edit(DemoModel demo)
+        public bool edit(int Id)
         {
             var i = 0;
             using (SqlConnection con = new SqlConnection(ConnectionString()))
-            {
+            {   DemoModel demo = new DemoModel();
 
                 con.Open();
                 SqlCommand cmd = new SqlCommand("spdemoProc", con);
